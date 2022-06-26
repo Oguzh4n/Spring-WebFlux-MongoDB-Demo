@@ -8,5 +8,33 @@ spring:
       host: localhost
       port: 27017
 
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      auto-offset-reset: earliest
+      properties:
+        spring:
+          json:
+            use:
+              type:
+                headers: 'false'
+            value:
+              default:
+                type: com.example.demo.dto.ProductDto.java
+      group-id: reactivekafkaconsumerandproducer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    bootstrap-servers: localhost:9200
+    properties:
+      spring:
+        json:
+          trusted:
+            packages: '*'
+FAKE_PRODUCER_DTO_TOPIC: fake_producer_dto_topic
+FAKE_CONSUMER_DTO_TOPIC: fake_consumer_dto_topic
+
+
 server:
   port: 8080

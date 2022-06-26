@@ -3,7 +3,11 @@ package com.example.demo.service;
 import com.example.demo.dto.ProductDto;
 import com.example.demo.respository.ProductRepository;
 import com.example.demo.utils.AppUtils;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Range;
+import org.springframework.kafka.core.reactive.ReactiveKafkaConsumerTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -45,4 +49,5 @@ public class ProductService {
     public Mono<Void> deleteProduct(String id){
         return productRepository.deleteById(id);
     }
+
 }
